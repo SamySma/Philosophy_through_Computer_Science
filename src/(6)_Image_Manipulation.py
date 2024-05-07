@@ -2,26 +2,63 @@
 
 from graphics import *
 
-grid = [['X','O','O'],
-        ['X','O','X'],
-        ['X','X','O']]
+window = GraphWin ('Image Manipulation', 1000,1000)
 
-data = [[1,2,3,4], [5,6,7,8]]
+# new_img = Image(Point(500,500), 500, 500)
+# # new_img.draw(window)
 
+# img = Image(Point(500,500),'testPic.png')
+# # img.draw(window)
 
+# # r, g, b = img.getPixel(250,400)
+# # print(r,g,b)
 
-# adjency matrix: Represents existence of binary
-#                 relationship.
-#                 '1' if exists
-#                 '0' if not
-adj_matrix = [[0,1,1], 
-              [1,0,0], 
-              [1,0,0]]
+# # for x in range(10):
+# #     for y in range(10):
+# #         print(img.getPixel(x,y))
 
-# for row in range(3):
-#     for column in range(3):
-#         print(grid[row][column])
+# for x in range(500):
+#     for y in range(500):
+#         new_img.setPixel(x,y,color_rgb(255,0,0))
 
-for row in range(len(data)):
-    for column in range(len(data[0])):
-        print(data[row][column])
+# new_img.draw(window)
+# # new_img.save('testPic2.png')
+
+#new_img = Image(Point(500,250), 250,250)
+#inc = 256/250
+# for x in range(500):
+#     R = int(255-inc*x)
+#     G = int(inc*x)
+#     B = 0
+#     for y in range(500):
+#         new_img.setPixel(x, y, color_rgb(R, G, B))
+
+# new_img.save('red-green-gradient.png')
+
+# for y in range(250):
+#     R = 0
+#     G = int(255-inc*y)
+#     B = int(inc*y)
+#     for x in range(250):
+#         new_img.setPixel(x,y,color_rgb(R,G,B))
+
+# new_img.draw(window)
+
+existin_img = Image(Point(500,500), 'testPic.png')
+width = existin_img.getWidth()
+height = existin_img.getHeight()
+new_img = Image(Point(500,500),width,height)
+
+for x in range(width):
+    for y in range(height):
+        R,G,B = existin_img.getPixel(x,y)
+        average = int((R+G+B)/3)
+        new_img.setPixel(x,y, color_rgb(average,average,average))
+
+#new_img.draw(window)
+
+new_img.save('test-bw.png')
+
+window.getMouse()
+window.close()
+
