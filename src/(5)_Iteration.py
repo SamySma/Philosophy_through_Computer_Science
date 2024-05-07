@@ -42,7 +42,7 @@ smallest_so_far = L2[0]
 # print(largest_so_far)
 
 
-x = 10
+x = 11
 prime = True
 
 for num in range(2,x):
