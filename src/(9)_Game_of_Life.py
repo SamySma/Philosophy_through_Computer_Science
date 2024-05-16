@@ -151,12 +151,39 @@ def mirror(grid, grid_visual):
                 grid_visual[i][j].setFill(color_rgb(0,0,0))
 
 
+def place_glider(x, y, grid):
+    """Places a glider with top-left cell at (x, y)."""
+    glider_pattern = [(0, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+    for dx, dy in glider_pattern:
+        grid[x + dx][y + dy] = '*'
+
+
+def place_eater(x,y, grid):
+    eater_pattern = [(0,0), (0,1), (1,0),(2,1),(2,2),(2,3),(3,3)]
+    for dx, dy in eater_pattern:
+        grid[x+dx][y+dy]='*'
+
+def place_glider_gun(x, y, grid):
+    """Place a Gosper Glider Gun with the top-left cell at (x, y)."""
+    gun_pattern = [
+        (5, 1), (5, 2), (6, 1), (6, 2),
+        (5, 11), (6, 11), (7, 11), (4, 12), (8, 12), (3, 13), (9, 13), (3, 14), (9, 14),
+        (6, 15), (4, 16), (8, 16), (5, 17), (6, 17), (7, 17), (6, 18),
+        (3, 21), (4, 21), (5, 21), (3, 22), (4, 22), (5, 22), (2, 23), (6, 23),
+        (1, 25), (2, 25), (6, 25), (7, 25),
+        (3, 35), (4, 35), (3, 36), (4, 36)
+    ]
+    for dx, dy in gun_pattern:
+        grid[x + dx][y + dy] = '*'
+
 
 window = GraphWin('Game of Life', 500, 500, autoflush=False)
 ca_grid = create_grid(50,50)
 grid_visual = create_grid_visual(50, 50, window)
-populate(ca_grid,0.6)
-
+#populate(ca_grid,0.5)
+#place_glider(5, 5, ca_grid)  # Initialize the glider at position (10, 10)
+place_glider_gun(5,5,ca_grid)
+place_eater(40,40,ca_grid)
 
 
 
